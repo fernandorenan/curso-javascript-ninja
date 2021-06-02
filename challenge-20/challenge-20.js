@@ -99,36 +99,33 @@ Caso contrário, mostre um alerta com a mensagem:
 
 $button.addEventListener('click', function () {
 
+  event.preventDefault()
+  if($inputUsername.value === 'Desconhecido')
+     return alert('Preencha o nome do usuário!');
 
-  if($inputUsername.value === 'Desconhecido'){
-    alert('Preencha o nome do usuário!');
-    event.preventDefault()
-  }
+  if(!$inputEmail.value)
+    return alert('Preencha o e-mail');
 
-  if(!$inputEmail.value){
-    alert('Preencha o e-mail');
-    event.preventDefault()
-  }
+  if(!$message.value)
+    return alert('Preencha a mensagem!');
 
-  if(!$message.value){
-    alert('Preencha a mensagem!');
-    event.preventDefault()
-  }
 
-  function isValidEmail(email) {
-    return true;
-  }
-
-  if(!isValidEmail){
+  if(!isValidEmail($inputEmail.value)){
     alert('Entre com um e-mail válido!');
   }
 
-if($inputUsername.value !== 'Desconhecido' && $inputEmail.value && $message.value && isValidEmail ){
+  // if(!confirm('Tem certeza que deseja enviar o formulário?'))
+  //    return alert ('Não enviado.')
 
-  confirm('Tem certeza que deseja enviar o formulário?') ? alert('Enviado com sucesso!'): alert('Não enviado.')
+  //   return alert('Enviado com sucesso!');
+
+
+if($inputUsername.value !== 'Desconhecido' && $inputEmail.value && $message.value && isValidEmail($inputEmail.value) ){
+
+   confirm('Tem certeza que deseja enviar o formulário?') ? alert('Enviado com sucesso!'): alert('Não enviado.')
 
 }
-})
+}, false)
 
 
 
@@ -158,7 +155,12 @@ Alguns e-mails inválidos:
     - "rita-marica@titica.a.b"
     - "agua_@evida.br.com"
 */
-// ?
+
+function isValidEmail(email) {
+  // if(email === [])
+  // return true;
+  return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
+}
 
 
 }(window, document))
