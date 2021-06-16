@@ -23,3 +23,49 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+
+let visor = document.querySelector('[data-js="visor"]');
+visor.value = 0;
+let number = document.querySelectorAll('[data-js="btn-number"]');
+let operator = document.querySelectorAll('[data-js="btn-operator"]');
+let ce = document.querySelector('[data-js="btn-ce"]');
+let equal = document.querySelector('[data-js="btn-equal"]');
+
+number.forEach(function(button){
+   button.addEventListener('click',passarNum ,false)
+})
+operator.forEach(function(button){
+  button.addEventListener('click',passarOperator ,false)
+})
+ce.addEventListener('click',passarCE ,false)
+equal.addEventListener('click',passarEqual ,false)
+
+
+
+function passarNum(){
+
+  visor.value += this.value
+
+ }
+
+ function passarOperator(){
+
+  visor.value += this.value
+
+ }
+
+ function passarCE(){
+
+  visor.value = 0;
+
+ }
+ function passarEqual(){
+
+  visor.value += this.value
+
+ }
+
+
+
+
